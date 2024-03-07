@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import exclamationCircle from '../../img/exclamationCircle.svg';
 import styles from './Popconfirm.module.css';

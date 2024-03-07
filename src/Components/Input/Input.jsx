@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from './Input.module.css';
 
-export default function Input ({ label, type = 'text', register, name, rules, placeholder, error, inputStyle, labelStyle, defaultValue }) {
+export default function Input ({ label, type, register, name, rules, placeholder, error, inputStyle, labelStyle, defaultValue }) {
   return (
     <div className={styles.formGroup}>
       <label htmlFor={name} className={`${styles.label} ${labelStyle}`}>
