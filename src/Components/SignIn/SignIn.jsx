@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginUser, clearError } from '../../store/actions/loginUser';
+import Input from '../Input/Input';
 import styles from './SignIn.module.css';
 
 export default function SignIn() {
@@ -31,56 +32,48 @@ export default function SignIn() {
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={styles.header}>Sign In</div>
         
-        <div className={styles.formGroup}>
-          <label htmlFor="email" className={styles.label}>
-            Email address
-            <input
-              type="email"
-              className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
-              id="email"
-              placeholder="Email address"
-              {...register("email", {
-                required: "This field is required",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "Invalid email format"
-                }
-              })}
-            />
-          </label>
-          {errors.email && <span className={styles.errorMessage}>{errors.email.message}</span>}
-        </div>
+        <Input 
+          label="Email address"
+          type="email"
+          name="email"
+          placeholder="Email address"
+          register={register}
+          rules={{
+            required: "This field is required",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              message: "Invalid email format"
+            }
+          }}
+          error={errors.email}
+        />
 
-        <div className={styles.formGroup}>
-          <label htmlFor="password" className={styles.label}>
-            Password
-            <input
-              type="password"
-              className={`${styles.input} ${errors.password ? styles.inputError : ''}`}
-              id="password"
-              placeholder="Password"
-              {...register("password", {
-                required: "This field is required",
-                minLength: {
-                  value: 6,
-                  message: "Password must be at least 6 characters"
-                },
-                maxLength: {
-                  value: 40,
-                  message: "Password cannot exceed 40 characters"
-                }
-              })}
-            />
-          </label>
-          {errors.password && <span className={styles.errorMessage}>{errors.password.message}</span>}
-        </div>
+        <Input 
+          label="Password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          register={register}
+          rules={{
+            required: "This field is required",
+            minLength: {
+              value: 6,
+              message: "Password must be at least 6 characters"
+            },
+            maxLength: {
+              value: 40,
+              message: "Password cannot exceed 40 characters"
+            }
+          }}
+          error={errors.password}
+        />
 
         {authError && <div className={styles.errorMessage}>Wrong password or email</div>}
 
         <button type="submit" className={styles.btn}>Login</button>
 
         <div className={styles.signUpText}>
-        Don&apos;t have an account? <a href="/sign-up" className={styles.signUpLink}>Sign Up</a>
+          Don&apos;t have an account? <a href="/sign-up" className={styles.signUpLink}>Sign Up</a>
         </div>
       </form>
     </div>

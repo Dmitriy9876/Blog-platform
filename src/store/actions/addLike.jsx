@@ -1,3 +1,5 @@
+import { SET_LIKE, SET_ERROR } from './constantsActions';
+
 export const addLike = (slug, token) => async (dispatch) => {
   try {
     const response = await fetch(`https://blog.kata.academy/api/articles/${slug}/favorite`, {
@@ -11,8 +13,8 @@ export const addLike = (slug, token) => async (dispatch) => {
       throw new Error(`Ошибка: ${response.status}`);
     }
     const data = await response.json();
-    dispatch({ type: 'SET_LIKE', payload: data });
+    dispatch({ type: SET_LIKE, payload: data });
   } catch (error) {
-    dispatch({ type: 'SET_ERROR', payload: error.message });
+    dispatch({ type: SET_ERROR, payload: error.message });
   }
 }

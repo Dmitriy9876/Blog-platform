@@ -1,0 +1,13 @@
+export const START_LOADING = 'START_LOADING';
+export const END_LOADING = 'END_LOADING';
+export const SET_ERROR = 'SET_ERROR';
+export const CLEAR_ERROR = 'CLEAR_ERROR';
+export const ARTICLE_DELETED = 'ARTICLE_DELETED';
+export const SET_LIKE = 'SET_LIKE';
+export const UNSET_LIKE = 'UNSET_LIKE';
+export const SET_ARTICLES = 'SET_ARTICLES';
+export const SET_ARTICLE = 'SET_ARTICLE';
+export const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
+export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
+export const ARTICLE_CREATED = 'ARTICLE_CREATED';
+export const ARTICLE_UPDATED = 'ARTICLE_UPDATED';

@@ -74,6 +74,15 @@
   resize: none;
 }
 
+.textareaError {
+  border: 1px solid #F5222D;
+  margin-bottom: 2px;
+}
+
+.textareaError:focus {
+  outline-color: #F5222D;
+}
+
 .errorMessage {
   display: block;
   height: 22px;

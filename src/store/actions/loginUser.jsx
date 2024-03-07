@@ -1,5 +1,7 @@
+import { START_LOADING, UPDATE_USER_DATA, USER_LOGGED_OUT, END_LOADING, SET_ERROR, CLEAR_ERROR } from './constantsActions';
+
 export const loginUser = (email, password) => async (dispatch) => {
-  dispatch({ type: 'START_LOADING' });
+  dispatch({ type: START_LOADING });
   try {
     const response = await fetch('https://blog.kata.academy/api/users/login', {
       method: 'POST',
@@ -19,17 +21,17 @@ export const loginUser = (email, password) => async (dispatch) => {
 
     localStorage.setItem('user', JSON.stringify(data.user));
 
-    dispatch({ type: 'UPDATE_USER_DATA', payload: data.user });
-    dispatch({ type: 'END_LOADING' });
+    dispatch({ type: UPDATE_USER_DATA, payload: data.user });
+    dispatch({ type: END_LOADING });
   } catch (error) {
-    dispatch({ type: 'SET_ERROR', payload: error.message });
+    dispatch({ type: SET_ERROR, payload: error.message });
   }
 }
 
 export const userLoggedOut = () => ({
-  type: 'USER_LOGGED_OUT',
+  type: USER_LOGGED_OUT,
 });
 
 export const clearError = () => ({
-  type: 'CLEAR_ERROR',
+  type: CLEAR_ERROR,
 })

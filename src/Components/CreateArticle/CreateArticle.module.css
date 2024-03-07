@@ -29,12 +29,6 @@
   margin-bottom: 21px;
 }
 
-.label {
-  display: block;
-  font-size: 14px;
-  line-height: 22px;
-}
-
 .formGroupInput {
   font-family: Roboto;
   font-size: 16px;
@@ -49,12 +43,10 @@
   margin-top: 2px;
 }
 
-.formGroupInput::placeholder,
 .formGroupTextarea::placeholder {
   color: #BFBFBF;
 }
 
-.formGroupInput:focus,
 .formGroupTextarea:focus {
   outline-color: black;
 }
@@ -72,14 +64,6 @@
   border-radius: 5px;
   box-sizing: border-box;
   resize: none;
-}
-
-.errorMessage {
-  display: block;
-  height: 22px;
-  color: #F5222D;
-  font-size: 14px;
-  margin-top: 5px;
 }
 
 .tag,
@@ -161,4 +145,20 @@
 .submitBtn:active {
   opacity: 0.8;
   transform: scale(0.99);
+}
+
+.textareaError {
+  border: 1px solid #F5222D;
+  margin-bottom: 2px;
+}
+
+.textareaError:focus {
+  outline-color: #F5222D;
+}
+
+.errorMessage {
+  display: block;
+  color: #F5222D;
+  font-size: 14px;
+  margin-top: 5px;
 }

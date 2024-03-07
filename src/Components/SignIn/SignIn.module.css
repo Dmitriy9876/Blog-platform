@@ -23,37 +23,6 @@
   margin-bottom: 21px;
 }
 
-.label {
-  font-size: 14px;
-  line-height: 22px;
-  color: #262626;
-}
-
-.formGroup {
-  margin-bottom: 12px;
-}
-
-.input {
-  font-family: Roboto;
-  font-size: 16px;
-  line-height: 24px;
-  color: #000000BF;
-  width: 100%;
-  margin-top: 2px;
-  padding: 8px 12px;
-  border: 1px solid #BFBFBF;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-.input::placeholder {
-  color: #BFBFBF;
-}
-
-.input:focus {
-  outline-color: black;
-}
-
 .btn {
   font-family: Roboto;
   width: 100%;
@@ -99,20 +68,4 @@
 .signUpLink:active {
   transform: scale(0.97);
   opacity: 0.8;
-}
-
-.inputError {
-  border: 1px solid #F5222D;
-  margin-bottom: 2px;
-}
-
-.inputError:focus {
-  outline-color: #F5222D;
-}
-
-.errorMessage {
-  display: block;
-  color: #F5222D;
-  font-size: 14px;
-  margin-top: 5px;
 }

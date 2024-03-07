@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import Input from '../Input/Input';
 import { registerUser } from '../../store/actions/registerUser';
 import styles from './SignUp.module.css';
 
@@ -20,76 +21,60 @@ export default function SignUp() {
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={styles.header}>Create new account</div>
 
-        <div className={styles.formItem}>
-          <label htmlFor="username" className={styles.label}>
-            Username
-            <input
-              type="text"
-              id="username"
-              {...register('username', {
-                required: 'Username is required',
-                minLength: { value: 3, message: 'Username must be 3-20 characters long' },
-                maxLength: { value: 20, message: 'Username must be 3-20 characters long' }
-              })}
-              placeholder="Username"
-              className={`${styles.input} ${errors.username ? styles.inputError : ''}`}
-            />
-          </label>
-          {errors.username && <span className={styles.errorMessage}>{errors.username.message}</span>}
-        </div>
+        <Input
+          label="Username"
+          type="text"
+          name="username"
+          placeholder="Username"
+          register={register}
+          rules={{
+            required: 'Username is required',
+            minLength: { value: 3, message: 'Username must be 3-20 characters long' },
+            maxLength: { value: 20, message: 'Username must be 3-20 characters long' }
+          }}
+          error={errors.username}
+        />
 
-        <div className={styles.formItem}>
-          <label htmlFor="email" className={styles.label}>
-            Email address
-            <input
-              type="email"
-              id="email"
-              {...register('email', {
-                required: 'Email is required',
-                pattern: {
-                  value: /^\S+@\S+\.\S+$/,
-                  message: 'Invalid email format'
-                }
-              })}
-              placeholder="Email address"
-              className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
-            />
-          </label>
-          {errors.email && <span className={styles.errorMessage}>{errors.email.message}</span>}
-        </div>
+        <Input
+          label="Email address"
+          type="email"
+          name="email"
+          placeholder="Email address"
+          register={register}
+          rules={{
+            required: 'Email is required',
+            pattern: {
+              value: /^\S+@\S+\.\S+$/,
+              message: 'Invalid email format'
+            }
+          }}
+          error={errors.email}
+        />
 
-        <div className={styles.formItem}>
-          <label htmlFor="password" className={styles.label}>
-            Password
-            <input
-              type="password"
-              id="password"
-              {...register('password', {
-                required: 'Password is required',
-                minLength: { value: 6, message: 'Your password needs to be at least 6 characters' }
-              })}
-              placeholder="Password"
-              className={`${styles.input} ${errors.password ? styles.inputError : ''}`}
-            />
-          </label>
-          {errors.password && <span className={styles.errorMessage}>{errors.password.message}</span>}
-        </div>
+        <Input
+          label="Password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          register={register}
+          rules={{
+            required: 'Password is required',
+            minLength: { value: 6, message: 'Your password needs to be at least 6 characters' }
+          }}
+          error={errors.password}
+        />
 
-        <div className={styles.formItem}>
-          <label htmlFor="repeatPassword" className={styles.label}>
-            Repeat Password
-            <input
-              type="password"
-              id="repeatPassword"
-              {...register('repeatPassword', {
-                validate: value => value === watchPassword || 'Passwords must match'
-              })}
-              placeholder="Repeat Password"
-              className={`${styles.input} ${errors.repeatPassword ? styles.inputError : ''}`}
-            />
-          </label>
-          {errors.repeatPassword && <span className={styles.errorMessage}>{errors.repeatPassword.message}</span>}
-        </div>
+        <Input
+          label="Repeat Password"
+          type="password"
+          name="repeatPassword"
+          placeholder="Repeat Password"
+          register={register}
+          rules={{
+            validate: value => value === watchPassword || 'Passwords must match'
+          }}
+          error={errors.repeatPassword}
+        />
 
         <div className={`${styles.formItem} ${styles.formCheck}`}>
           <div className={styles.wrapCheckbox}>
@@ -103,7 +88,7 @@ export default function SignUp() {
                 className={`${styles.checkbox} ${errors.agree ? styles.inputError : ''}`}
               />
               <span className={styles.checkboxText}>I agree to the processing of my personal information</span>
-              </label>
+            </label>
           </div>
           {errors.agree && <span className={`${styles.errorMessage} ${styles.noCheckboxText}`}>{errors.agree.message}</span>}
         </div>

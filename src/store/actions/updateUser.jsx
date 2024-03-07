@@ -1,5 +1,7 @@
+import { START_LOADING, UPDATE_USER_DATA, END_LOADING, SET_ERROR } from './constantsActions';
+
 export const updateUser = (username, email, password, image, token) => async (dispatch) => {
-  dispatch({ type: 'START_LOADING' });
+  dispatch({ type: START_LOADING });
 
   try {
     const requestBody = {
@@ -22,10 +24,10 @@ export const updateUser = (username, email, password, image, token) => async (di
 
     const data = await response.json();
 
-    dispatch({ type: 'UPDATE_USER_DATA', payload: data.user });
+    dispatch({ type: UPDATE_USER_DATA, payload: data.user });
   } catch (error) {
-    dispatch({ type: 'SET_ERROR', payload: error.message });
+    dispatch({ type: SET_ERROR, payload: error.message });
   } finally {
-    dispatch({ type: 'END_LOADING' });
+    dispatch({ type: END_LOADING });
   }
 }

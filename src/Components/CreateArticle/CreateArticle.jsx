@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector  } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { postArticle } from '../../store/actions/postArticle';
+import Input from '../Input/Input';
 import styles from './CreateArticle.module.css';
 
 export default function CreateArticle() {
@@ -80,49 +81,37 @@ export default function CreateArticle() {
   return (
     <form className={styles.articleForm} onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className={styles.header}>Create new article</div>
-      <div className={styles.formGroup}>
-        <label htmlFor="Title" className={styles.label}>
-          Title
-          <input
-            className={styles.formGroupInput}
-            id="title"
-            {...register('title', {
-              required: 'Title is required',
-              minLength: { value: 2, message: 'Title must be 2-250 characters long' },
-              maxLength: { value: 250, message: 'Title must be 2-250 characters long' }
-            })}
-            placeholder="Title"
-            required
-            value={article.title}
-            onChange={handleInputChange}
-          />
-        </label>
-        {errors.title && <span className={styles.errorMessage}>{errors.title.message}</span>}
-      </div>
-      <div className={styles.formGroup}>
-        <label htmlFor="shortDescription" className={styles.label}>
-          Short description
-          <input
-            className={styles.formGroupInput}
-            id="shortDescription"
-            {...register('shortDescription', {
-              required: 'Short description is required',
-              minLength: { value: 3, message: 'Short description must be 3-250 characters long' },
-              maxLength: { value: 250, message: 'Short description must be 3-250 characters long' }
-            })}
-            placeholder="Short description"
-            required
-            value={article.shortDescription}
-            onChange={handleInputChange}
-          />
-        </label>
-        {errors.shortDescription && <span className={styles.errorMessage}>{errors.shortDescription.message}</span>}
-      </div>
+      <Input
+        label="Title"
+        type="text"
+        name="title"
+        placeholder="Title"
+        register={register}
+        rules={{
+          required: 'Title is required',
+          minLength: { value: 2, message: 'Title must be 2-250 characters long' },
+          maxLength: { value: 250, message: 'Title must be 2-250 characters long' }
+        }}
+        error={errors.title}
+      />
+      <Input
+        label="Short description"
+        type="text"
+        name="shortDescription"
+        placeholder="Short description"
+        register={register}
+        rules={{
+          required: 'Short description is required',
+          minLength: { value: 3, message: 'Short description must be 3-250 characters long' },
+          maxLength: { value: 250, message: 'Short description must be 3-250 characters long' }
+        }}
+        error={errors.shortDescription}
+      />
       <div className={styles.formGroup}>
         <label htmlFor="Text" className={styles.label}>
           Text
           <textarea
-            className={styles.formGroupTextarea}
+            className={`${styles.formGroupTextarea} ${errors.text ? styles.textareaError : ''}`}
             id="text"
             {...register('text', {
               required: 'Text is required',

@@ -1,5 +1,7 @@
+import { START_LOADING, ARTICLE_CREATED, END_LOADING, SET_ERROR } from './constantsActions';
+
 export const postArticle = (articleData, token) => async (dispatch) => {
-  dispatch({ type: 'START_LOADING' });
+  dispatch({ type: START_LOADING });
   try {
     const response = await fetch('https://blog.kata.academy/api/articles', {
       method: 'POST',
@@ -17,10 +19,10 @@ export const postArticle = (articleData, token) => async (dispatch) => {
 
     const data = await response.json();
 
-    dispatch({ type: 'ARTICLE_CREATED', payload: data.article });
-    dispatch({ type: 'END_LOADING' });
+    dispatch({ type: ARTICLE_CREATED, payload: data.article });
+    dispatch({ type: END_LOADING });
   } catch (error) {
-    dispatch({ type: 'SET_ERROR', payload: error.message });
-    dispatch({ type: 'END_LOADING' });
+    dispatch({ type: SET_ERROR, payload: error.message });
+    dispatch({ type: END_LOADING });
   }
 }
